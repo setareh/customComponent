@@ -12,7 +12,7 @@ export default function Modal({ title, content, onClose, isOpen }) {
       ></div>
       <div className="bg-white rounded-lg shadow-lg z-10 max-w-lg mx-auto relative w-80 sm:w-96">
         <button
-          className="absolute text-2xl top-0 right-2 m-2 text-gray-950 hover:text-gray-900 cursor-pointer"
+          className="absolute text-2xl top-0 left-2 m-2 text-gray-950 hover:text-gray-900 cursor-pointer"
           onClick={onClose}
         >
           &times;
