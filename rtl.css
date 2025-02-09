@@ -1,0 +1,10 @@
+[dir="rtl"] {
+  /* Add RTL-specific styles here */
+  .start-4 {
+    margin-left: 1rem;
+  }
+  .end-4 {
+    margin-right: 1rem;
+  }
+  /* Add more customizations as needed */
+}
