@@ -1,5 +1,5 @@
-import { useState } from "react";
 import Button from "./components/Button/Button";
+import Textfield from "./components/Textfield/Textfield";
 
 function App() {
   const events = {
@@ -26,6 +26,12 @@ function App() {
         <Button events={events} className={"bg-indigo-900 font-medium"}>
           custom text
         </Button>
+      </div>
+      <div className="my-4">
+        <Textfield
+          label={"Something"}
+          onChange={(e) => console.log(e.target.value)}
+        />
       </div>
     </div>
   );
