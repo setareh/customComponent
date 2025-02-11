@@ -3,7 +3,7 @@ import { create } from "zustand";
 export const useDrawerStore = create((set) => ({
   drawer: {
     isOpenDrawer: false,
-    placement: "right",
+    placement: "",
     title: "",
     content: "",
   },
@@ -22,7 +22,7 @@ export const useDrawerStore = create((set) => ({
         isOpenDrawer: false,
         title: "",
         content: "",
-        placement: "right",
+        placement: "",
       },
     })),
 }));

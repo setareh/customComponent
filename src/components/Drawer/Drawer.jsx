@@ -21,16 +21,16 @@ export default function Drawer() {
   }
 
   return ReactDOM.createPortal(
-    <div className={`fixed inset-0 flex ${justifyContent} ${alignItems} z-50`}>
+    <div className={`fixed inset-0 flex ${justifyContent} ${alignItems} z-50 `}>
       <div
         className="fixed inset-0 bg-black opacity-50"
         onClick={closeDrawer}
       ></div>
       <div
         className={`fixed ${placement}-0 ${
-          placement == "top" || placement == "bottom"
+          placement === "top" || placement === "bottom"
             ? "w-full h-64  "
-            : "w-64 h-full top-0"
+            : "w-64 h-full"
         } bg-white shadow-lg z-10`}
       >
         <div
