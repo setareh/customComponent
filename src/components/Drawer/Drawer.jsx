@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom";
 import { useDrawerStore } from "../../utils/context/zustand/useDrawerStore";
+import { useState, useEffect } from "react";
 
 export default function Drawer() {
   const { isOpenDrawer, placement, title, content } = useDrawerStore(
@@ -7,7 +8,20 @@ export default function Drawer() {
   );
   const { closeDrawer } = useDrawerStore((state) => state);
 
-  if (!isOpenDrawer) return null;
+  const [isVisible, setIsVisible] = useState(isOpenDrawer);
+
+  // if (!isOpenDrawer) return null;
+
+  useEffect(() => {
+    if (isOpenDrawer) {
+      setIsVisible(true);
+    } else {
+      const timer = setTimeout(() => setIsVisible(false), 300);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpenDrawer]);
+
+  if (!isVisible) return null;
 
   let justifyContent = "justify-center";
   let alignItems = "items-center";
@@ -21,17 +35,29 @@ export default function Drawer() {
   }
 
   return ReactDOM.createPortal(
-    <div className={`fixed inset-0 flex ${justifyContent} ${alignItems} z-50 `}>
+    <div className={`fixed inset-0 flex ${justifyContent} ${alignItems} z-50`}>
       <div
-        className="fixed inset-0 bg-black opacity-50"
+        className={`fixed inset-0 bg-black opacity-50 transition-opacity duration-300 ${
+          isOpenDrawer ? "opacity-50" : "opacity-0"
+        }`}
         onClick={closeDrawer}
       ></div>
       <div
-        className={`fixed ${placement}-0 ${
+        className={`fixed ${placement}-0 transform transition-transform duration-300 ${
           placement === "top" || placement === "bottom"
-            ? "w-full h-64  "
+            ? "w-full h-64"
             : "w-64 h-full"
-        } bg-white shadow-lg z-10`}
+        } bg-white shadow-lg z-10 ${
+          isOpenDrawer
+            ? "translate-x-0 translate-y-0"
+            : placement === "left"
+            ? "translate-x-full"
+            : placement === "right"
+            ? "-translate-x-full"
+            : placement === "top"
+            ? "translate-y-full"
+            : "-translate-y-full"
+        }`}
       >
         <div
           className={`p-4 border-b border-gray-200 flex  justify-between items-center`}
